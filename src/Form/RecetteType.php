@@ -2,8 +2,10 @@
 
 namespace App\Form\Type;
 
+use App\Enum\CategoryType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -22,6 +24,7 @@ class RecetteType  extends AbstractType
                 'mapped' => false,
                 'required' => false
             ])
+            ->add('Category', EnumType::class, ['class' => CategoryType::class] )
             ->add('save', SubmitType::class)
         ;
     }

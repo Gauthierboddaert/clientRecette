@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class CallApiService
@@ -29,14 +30,23 @@ class CallApiService
         return $content;
     }
 
-    public function postRecette(array $req) : array
+    public function postRecette(array $req)
     {
-        dd($req);
+        
         $response = $this->client->request(
             'POST',
-            'http://127.0.0.1:8001/api/recette/new'
+            'http://127.0.0.1:8001/api/recette/new',
+            [
+                "json" => [
+                    'title' => $req['title'],
+                    'description' => $req['description'],
+                    'Category' => $req['Category'],
+                    'images' => $req['images'],
+                    'email' => $req['email']
+                ]
+            ]
         );
-        return [];
+        return $response->getContent();
     }
 
     public function connect(array $req) 

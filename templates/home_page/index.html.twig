@@ -15,9 +15,12 @@
             </p>
         </div>
     </section>
-    <pre>
-        {{ dump(user) }}
-    </pre>
+    {% if user == null %}
+        <p>User anonyme.</p>
+    {% else %}
+        <h1>{{ user.username }}</h1>
+    {% endif %} 
+    
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row">
@@ -31,9 +34,9 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         {# <a href="{{ path('app_home_show', {'id': recette.id} ) }}" class="btn btn-sm btn-outline-secondary">Voir plus</a>
-                                         {% if is_granted('ROLE_ADMIN') or recette.user.id == app.user.id  %}
+                                            {% if is_granted('ROLE_ADMIN') or recette.user.id == app.user.id  %}
                                             <a href={{ path('app_home_edit', {'id': recette.id} ) }} class="btn btn-sm btn-outline-secondary">Modifié</a>
-                                         {% endif %} #}
+                                        {% endif %} #}
                                     </div>
                                     <small class="text-muted">{{recette.categoryPlat.type}}</small>
                                 </div>
